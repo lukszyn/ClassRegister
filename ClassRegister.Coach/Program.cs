@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClassRegister.Couch
+namespace ClassRegister.Coach
 {
     class Program
     {

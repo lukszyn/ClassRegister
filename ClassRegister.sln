@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister", "ClassRegister\ClassRegister.csproj", "{7FDF3A2D-548B-48E1-9259-C1D7471BD302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister", "ClassRegister\ClassRegister.csproj", "{7FDF3A2D-548B-48E1-9259-C1D7471BD302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.Admin", "ClassRegister.Admin\ClassRegister.Admin.csproj", "{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.Admin", "ClassRegister.Admin\ClassRegister.Admin.csproj", "{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.Couch", "ClassRegister.Couch\ClassRegister.Couch.csproj", "{DB629257-BDC9-4F3E-8D3C-B2E1335F5239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.Student", "ClassRegister.Student\ClassRegister.Student.csproj", "{181672CD-880A-446D-B8B5-F10FD4E71C81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.Student", "ClassRegister.Student\ClassRegister.Student.csproj", "{181672CD-880A-446D-B8B5-F10FD4E71C81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.DataLayer", "ClassRegister.DataLayer\ClassRegister.DataLayer.csproj", "{4F06FBF7-62DC-4AE0-8F0A-650E1E04030F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.DataLayer", "ClassRegister.DataLayer\ClassRegister.DataLayer.csproj", "{4F06FBF7-62DC-4AE0-8F0A-650E1E04030F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.WebApi", "ClassRegister.WebApi\ClassRegister.WebApi.csproj", "{EE5F221A-591E-4C32-843F-313F96B03553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.WebApi", "ClassRegister.WebApi\ClassRegister.WebApi.csproj", "{EE5F221A-591E-4C32-843F-313F96B03553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.Coach", "ClassRegister.Coach\ClassRegister.Coach.csproj", "{7FB24097-F81B-4B60-88C3-B3E36237B16E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB629257-BDC9-4F3E-8D3C-B2E1335F5239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB629257-BDC9-4F3E-8D3C-B2E1335F5239}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB629257-BDC9-4F3E-8D3C-B2E1335F5239}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB629257-BDC9-4F3E-8D3C-B2E1335F5239}.Release|Any CPU.Build.0 = Release|Any CPU
 		{181672CD-880A-446D-B8B5-F10FD4E71C81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{181672CD-880A-446D-B8B5-F10FD4E71C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{181672CD-880A-446D-B8B5-F10FD4E71C81}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{EE5F221A-591E-4C32-843F-313F96B03553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5F221A-591E-4C32-843F-313F96B03553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE5F221A-591E-4C32-843F-313F96B03553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB24097-F81B-4B60-88C3-B3E36237B16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB24097-F81B-4B60-88C3-B3E36237B16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB24097-F81B-4B60-88C3-B3E36237B16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB24097-F81B-4B60-88C3-B3E36237B16E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
