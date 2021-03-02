@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity;
 
 namespace ClassRegister.Admin
 {
@@ -6,7 +7,14 @@ namespace ClassRegister.Admin
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var container = new DIContainerProvider().GetContainer();
+
+            container.Resolve<Program>().Run();
+        }
+
+        private void Run()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity;
 
 namespace ClassRegister.Student
 {
@@ -6,7 +7,14 @@ namespace ClassRegister.Student
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var container = new DIContainerProvider().GetContainer();
+
+            container.Resolve<Program>().Run();
+        }
+
+        private void Run()
+        {
+            throw new NotImplementedException();
         }
     }
 }
