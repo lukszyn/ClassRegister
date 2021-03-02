@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister", "ClassRegister\ClassRegister.csproj", "{7FDF3A2D-548B-48E1-9259-C1D7471BD302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.BusinessLayer", "ClassRegister\ClassRegister.BusinessLayer.csproj", "{7FDF3A2D-548B-48E1-9259-C1D7471BD302}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.Admin", "ClassRegister.Admin\ClassRegister.Admin.csproj", "{D5BB877F-3AB8-4EC5-B284-8564CFDCDEF9}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.DataLayer", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.WebApi", "ClassRegister.WebApi\ClassRegister.WebApi.csproj", "{EE5F221A-591E-4C32-843F-313F96B03553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegister.Coach", "ClassRegister.Coach\ClassRegister.Coach.csproj", "{7FB24097-F81B-4B60-88C3-B3E36237B16E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassRegister.Coach", "ClassRegister.Coach\ClassRegister.Coach.csproj", "{7FB24097-F81B-4B60-88C3-B3E36237B16E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
