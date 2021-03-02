@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity;
 
 namespace ClassRegister.Admin
 {
@@ -6,15 +7,16 @@ namespace ClassRegister.Admin
     {
         private readonly IIoHelper _ioHelper;
 
-        //TODO: add container
-        //public Program(IIoHelper ioHelper)
-        //{
-        //    _ioHelper = ioHelper;
-        //}
-
         static void Main(string[] args)
         {
-            new Program().Run();
+            var container = new DIContainerProvider().GetContainer();
+
+            container.Resolve<Program>().Run();
+        }
+
+        public Program(IIoHelper ioHelper)
+        {
+            _ioHelper = ioHelper;
         }
 
         private void Run()
