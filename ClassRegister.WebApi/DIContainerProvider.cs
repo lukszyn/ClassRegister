@@ -1,4 +1,5 @@
-﻿using ClassRegister.DataLayer;
+﻿using ClassRegister.BusinessLayer.Services;
+using ClassRegister.DataLayer;
 using System;
 using Unity;
 using Unity.Injection;
@@ -10,6 +11,9 @@ namespace ClassRegister.WebApi
         public IUnityContainer GetContainer()
         {
             var container = new UnityContainer();
+
+            container.RegisterType<ICoursesService, CoursesService>();
+            container.RegisterType<IStudentsService, StudentsService>();
 
             container.RegisterType<Func<IClassRegisterDbContext>>(
                 new InjectionFactory(ctx => new Func<IClassRegisterDbContext>(() => new ClassRegisterDbContext())));
