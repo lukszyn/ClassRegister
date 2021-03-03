@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassRegister.Admin.Models;
+using System;
 using Unity;
 
 namespace ClassRegister.Admin
@@ -51,8 +52,26 @@ namespace ClassRegister.Admin
 
         private void AddCourse()
         {
-            throw new NotImplementedException();
+            var course = new Course();
+
+            course.Name = _ioHelper.GetStringFromUser("Enter the name of the course: ");
+            course.StartDate = _ioHelper.GetDateFromUser("Enter the starting date: ");
+            course.AttendanceThreshold = _ioHelper.GetPercentsFromUser("Enter the required attendance threshold (0-100%): ");
+            course.HomeworkThreshold = _ioHelper.GetPercentsFromUser("Enter the required homework threshold (0-100%): ");
+            course.TestThreshold = _ioHelper.GetPercentsFromUser("Enter the required tests threshold (0-100%): ");
+            course.Coach = _ioHelper.GetStringFromUser("Enter the coach email: ");
+
         }
+
+    }
+
+        //public string Name { get; set; }
+        //public DateTime StartDate { get; set; }
+        //public Coach Coach { get; set; }
+        //public double AttendanceThreshold { get; set; } = 0.7;
+        //public double HomeworkThreshold { get; set; } = 0.7;
+        //public double TestThreshold { get; set; } = 0.7;
+        //public ICollection<Student> Students { get; set; }
 
         private void AddStudent()
         {
