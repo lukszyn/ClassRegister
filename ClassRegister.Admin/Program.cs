@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassRegister.Admin.Models;
+using System;
 using Unity;
 
 namespace ClassRegister.Admin
@@ -61,7 +62,14 @@ namespace ClassRegister.Admin
 
         private void AddCoach()
         {
-            throw new NotImplementedException();
+            var newCoach = new Coach()
+            {
+                Name = _ioHelper.GetStringFromUser("Enter coach name:"),
+                Surname = _ioHelper.GetStringFromUser("Enter coach surname:"),
+                Email = _ioHelper.GetEmailFromUser("Enter coach email:"),
+                BirthDate = _ioHelper.GetDateTimeFromUser("Enter coach's bday date:"),
+                Password = _ioHelper.GetPasswordFromUser("Enter password:")
+            };
         }
     }
 }
