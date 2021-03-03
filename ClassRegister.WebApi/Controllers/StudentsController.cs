@@ -24,7 +24,7 @@ namespace ClassRegister.WebApi.Controllers
         [Route("{email}")]
         public Student GetStudent(string email)
         {
-
+            return _studentsService.GetStudent(email);
         }
     }
 }

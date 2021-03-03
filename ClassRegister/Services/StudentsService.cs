@@ -1,12 +1,14 @@
 ﻿using ClassRegister.DataLayer;
 using ClassRegister.DataLayer.Models;
 using System;
+using System.Linq;
 
 namespace ClassRegister.BusinessLayer.Services
 {
     public interface IStudentsService
     {
         void Add(Student student);
+        Student GetStudent(string email);
     }
 
     public class StudentsService : IStudentsService
@@ -24,6 +26,14 @@ namespace ClassRegister.BusinessLayer.Services
             {
                 context.Students.Add(student);
                 context.SaveChanges();
+            }
+        }
+
+        public Student GetStudent(string email)
+        {
+            using (var context = _classRegisterDbContextFactoryMethod())
+            {
+                return context.Students.FirstOrDefault(s => s.Email == email);
             }
         }
     }
