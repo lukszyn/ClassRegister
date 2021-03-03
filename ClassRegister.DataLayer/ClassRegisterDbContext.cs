@@ -7,6 +7,7 @@ namespace ClassRegister.DataLayer
 {
     public interface IClassRegisterDbContext : IDisposable
     {
+        DbSet<Coach> Coaches { get; set; }
         DatabaseFacade Database { get; }
 
         int SaveChanges();
