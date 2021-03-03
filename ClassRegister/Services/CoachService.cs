@@ -12,20 +12,27 @@ namespace ClassRegister.BusinessLayer.Services
     public class CoachService : ICoachService
     {
         private Func<IClassRegisterDbContext> _classRegisterFactoryMethod;
+        private IValidationService _validationService;
 
-        public CoachService(Func<IClassRegisterDbContext> classRegisterFactoryMethod)
+        public CoachService(
+            Func<IClassRegisterDbContext> classRegisterFactoryMethod,
+            IValidationService validationService)
         {
             _classRegisterFactoryMethod = classRegisterFactoryMethod;
+            _validationService = validationService;
         }
 
         public void Add(Coach coach)
         {
-            using (var context = _classRegisterFactoryMethod())
+            if (_validationService.CheckFormatOfEnteredEmail(coach.Email) == true && 
+                _validationService.CheckFormatOfEnteredPassword(coach.Password) == true)
             {
-                context.Coaches.Add(coach);
-                context.SaveChanges();
+                using (var context = _classRegisterFactoryMethod())
+                {
+                    context.Coaches.Add(coach);
+                    context.SaveChanges();
+                }
             }
         }
-
     }
 }
