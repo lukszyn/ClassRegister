@@ -10,6 +10,8 @@ namespace ClassRegister.Coach
         {
             var container = new UnityContainer();
 
+            container.RegisterType<IIoHelper, IoHelper>();
+
             return container;
         }
     }

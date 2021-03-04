@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ClassRegister.Admin.Models
+namespace ClassRegister.Coach.Models
 {
     public class Coach
     {
