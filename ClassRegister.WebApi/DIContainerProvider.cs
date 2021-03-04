@@ -14,7 +14,7 @@ namespace ClassRegister.WebApi
 
             container.RegisterType<ICoursesService, CoursesService>();
             container.RegisterType<IStudentsService, StudentsService>();
-
+            container.RegisterType<ICoachService, CoachService>();
             container.RegisterType<Func<IClassRegisterDbContext>>(
                 new InjectionFactory(ctx => new Func<IClassRegisterDbContext>(() => new ClassRegisterDbContext())));
 
