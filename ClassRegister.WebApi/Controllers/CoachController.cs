@@ -2,9 +2,9 @@
 
 namespace ClassRegister.WebApi.Controllers
 {
-    [Route"api/coaches"]
+    [Route("api/coaches")]
     public class CoachController : ControllerBase
     {
-        _
+        public CoachController() {}
     }
 }
