@@ -8,7 +8,9 @@ namespace ClassRegister.Admin
     public interface IIoHelper
     {
         int GetIntFromUser(string message);
+        int GetPercentsFromUser(string message);
         string GetStringFromUser(string message);
+        bool ValidatePercentage(int percentage);        
         public DateTime GetDateTimeFromUser(string message);
         string GetEmailFromUser(string message);
         string GetPasswordFromUser(string message);
@@ -32,6 +34,23 @@ namespace ClassRegister.Admin
         {
             Console.WriteLine(message);
             return Console.ReadLine();
+        }
+
+        public int GetPercentsFromUser(string message)
+        {
+            int percent;
+
+            do
+            {
+                percent = GetIntFromUser(message);
+            } while (!ValidatePercentage(percent));
+
+            return percent;
+        }
+
+        public bool ValidatePercentage(int percentage)
+        {
+            return (percentage > 0 && percentage < 100) ? true : false;
         }
 
         public DateTime GetDateTimeFromUser(string message)
