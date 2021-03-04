@@ -10,6 +10,7 @@ namespace ClassRegister.Admin
         {
             var container = new UnityContainer();
 
+            container.RegisterType<IIoHelper, IoHelper>();
             return container;
         }
     }
