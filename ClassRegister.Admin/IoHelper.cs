@@ -65,7 +65,7 @@ namespace ClassRegister.Admin
                 DateTimeStyles.None,
                 out result))
             {
-                Console.WriteLine("Not an valid date. Try again...");
+                Console.WriteLine("Not a valid date. Try again...");
             }
 
             return result;

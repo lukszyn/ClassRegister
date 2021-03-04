@@ -8,6 +8,7 @@ namespace ClassRegister.BusinessLayer.Services
     public interface IStudentsService
     {
         void Add(Student student);
+        bool CheckIfStudentExists(Student student);
         Student GetStudent(string email);
     }
 
@@ -26,6 +27,14 @@ namespace ClassRegister.BusinessLayer.Services
             {
                 context.Students.Add(student);
                 context.SaveChanges();
+            }
+        }
+
+        public bool CheckIfStudentExists(Student student)
+        {
+            using (var context = _classRegisterDbContextFactoryMethod())
+            {
+                return context.Students.Any(s => s.Email == student.Email);
             }
         }
 

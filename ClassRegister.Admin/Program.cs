@@ -87,10 +87,10 @@ namespace ClassRegister.Admin
         {
             return new Student()
             {
-                Name = _ioHelper.GetStringFromUser("Enter coach name:"),
-                Surname = _ioHelper.GetStringFromUser("Enter coach surname:"),
-                Email = _ioHelper.GetEmailFromUser("Enter coach email:"),
-                DateOfBirth = _ioHelper.GetDateTimeFromUser("Enter coach's bday date:"),
+                Name = _ioHelper.GetStringFromUser("Enter student name:"),
+                Surname = _ioHelper.GetStringFromUser("Enter student surname:"),
+                Email = _ioHelper.GetEmailFromUser("Enter student email:"),
+                DateOfBirth = _ioHelper.GetDateTimeFromUser("Enter student's birthday:"),
                 Password = _ioHelper.GetPasswordFromUser("Enter password:")
             };
         }
