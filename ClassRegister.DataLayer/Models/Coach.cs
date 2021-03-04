@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClassRegister.DataLayer.Models
 {
@@ -10,5 +11,6 @@ namespace ClassRegister.DataLayer.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime BirthDate { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }
