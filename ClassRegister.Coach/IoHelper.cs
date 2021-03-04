@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace ClassRegister.Admin
+namespace ClassRegister.Coach
 {
     public interface IIoHelper
     {
