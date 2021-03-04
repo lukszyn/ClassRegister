@@ -55,7 +55,7 @@ namespace ClassRegister.Admin
 
         public DateTime GetDateTimeFromUser(string message)
         {
-            string format = "dd/MM//yyyy";
+            string format = "dd/MM/yyyy";
             DateTime result;
 
             while(!DateTime.TryParseExact(
@@ -65,7 +65,7 @@ namespace ClassRegister.Admin
                 DateTimeStyles.None,
                 out result))
             {
-                Console.WriteLine("Not an valid date. Try again...");
+                Console.WriteLine("Not a valid date. Try again...");
             }
 
             return result;
