@@ -15,15 +15,15 @@ namespace ClassRegister.WebApi.Controllers
         }
 
         [HttpPost]
-        public string PostStudent([FromBody] Student student)
+        public StatusCodeResult PostStudent([FromBody] Student student)
         {
             if (!_studentsService.CheckIfStudentExists(student))
             {
                 _studentsService.Add(student);
-                return "Student added successfully";
+                return new StatusCodeResult(200);
             } else
             {
-                return "Something went wrong, try again.";
+                return new BadRequestResult();
             }
         }
 
