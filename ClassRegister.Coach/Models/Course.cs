@@ -1,7 +1,11 @@
-﻿namespace ClassRegister.CoachApp.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace ClassRegister.CoachApp.Models
 {
     public class Course
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public Coach Coach { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassRegister.CoachApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -14,6 +15,7 @@ namespace ClassRegister.CoachApp
         public DateTime GetDateTimeFromUser(string message);
         string GetEmailFromUser(string message);
         string GetPasswordFromUser(string message);
+        Status GetAttendanceStatus(string v);
     }
 
     public class IoHelper : IIoHelper
@@ -112,6 +114,25 @@ namespace ClassRegister.CoachApp
             while (validation == false);
 
             return password;
+        }
+
+        public Status GetAttendanceStatus(string message)
+        {
+            var correctValues = "";
+
+            foreach (var status in (Status[])Enum.GetValues(typeof(Status)))
+            {
+                correctValues += $"{status},";
+            }
+
+            object result;
+
+            while (!Enum.TryParse(typeof(Status), GetStringFromUser($"{message} ({correctValues}):"), out result))
+            {
+                Console.WriteLine("Incorrect value, try again");
+            }
+
+            return (Status)result;
         }
     }
 }

@@ -19,5 +19,19 @@ namespace ClassRegister.WebApi.Controllers
         {
             _coachService.Add(coach);
         }
+
+        [HttpGet]
+        [Route("credentials")]
+        public Coach LoginCoach([System.Web.Http.FromUri] Credentials credentials)
+        {
+            return _coachService.Login(credentials);
+        }
+
+        [HttpGet]
+        [Route("{email}")]
+        public Coach GetCoach([System.Web.Http.FromUri] string email)
+        {
+            return _coachService.GetCoach(email);
+        }
     }
 }
