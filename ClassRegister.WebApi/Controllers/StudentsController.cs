@@ -28,6 +28,12 @@ namespace ClassRegister.WebApi.Controllers
             }
         }
 
+        [HttpPut]
+        public void PutStudent([FromBody] Student student)
+        {
+            _studentsService.Update(student);
+        }
+
         [HttpGet]
         [Route("{email}")]
         public Student GetStudent(string email)
@@ -36,7 +42,7 @@ namespace ClassRegister.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("all/{id}")]
+        [Route("all/{courseId}")]
         public List<Student> GetStudents(int courseId)
         {
             return _studentsService.GetStudents(courseId);

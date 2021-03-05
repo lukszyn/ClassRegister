@@ -2,6 +2,7 @@
 using ClassRegister.DataLayer.Models;
 using System;
 using System.Linq;
+using System.Net;
 
 namespace ClassRegister.BusinessLayer.Services
 {
@@ -27,7 +28,7 @@ namespace ClassRegister.BusinessLayer.Services
 
         public void Add(Coach coach)
         {
-            if (_validationService.CheckFormatOfEnteredEmail(coach.Email) == true && 
+            if (_validationService.CheckFormatOfEnteredEmail(coach.Email) == true &&
                 _validationService.CheckFormatOfEnteredPassword(coach.Password) == true)
             {
                 using (var context = _classRegisterFactoryMethod())

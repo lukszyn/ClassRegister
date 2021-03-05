@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using Unity;
@@ -106,7 +107,7 @@ namespace ClassRegister.Admin
                 var response = httpClient.PostAsync(@"http://localhost:10500/api/coaches", content).Result;
                 var responseText = response.Content.ReadAsStringAsync().Result;
 
-                if (response.IsSuccessStatusCode)
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
                     Console.WriteLine($"Success. Response content: {responseText}");
                 }

@@ -19,5 +19,11 @@ namespace ClassRegister.WebApi.Controllers
         {
             _coursesService.Add(course);
         }
+
+        [HttpGet("{id}")]
+        public Course GetCours(int id)
+        {
+            return _coursesService.GetCoursById(id);
+        }
     }
 }

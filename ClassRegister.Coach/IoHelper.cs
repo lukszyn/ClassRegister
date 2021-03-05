@@ -16,6 +16,7 @@ namespace ClassRegister.CoachApp
         string GetEmailFromUser(string message);
         string GetPasswordFromUser(string message);
         Status GetAttendanceStatus(string v);
+        void PrintCourse(Course course);
     }
 
     public class IoHelper : IIoHelper
@@ -133,6 +134,11 @@ namespace ClassRegister.CoachApp
             }
 
             return (Status)result;
+        }
+
+        public void PrintCourse(Course course)
+        {
+            Console.WriteLine($"{course.Id}. {course.Name}");
         }
     }
 }

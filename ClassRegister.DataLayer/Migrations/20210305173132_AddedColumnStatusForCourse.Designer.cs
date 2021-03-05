@@ -4,43 +4,22 @@ using ClassRegister.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClassRegister.DataLayer.Migrations
 {
     [DbContext(typeof(ClassRegisterDbContext))]
-    partial class ClassRegisterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210305173132_AddedColumnStatusForCourse")]
+    partial class AddedColumnStatusForCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ClassRegister.DataLayer.Models.Attendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ClassesDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Attendances");
-                });
 
             modelBuilder.Entity("ClassRegister.DataLayer.Models.Coach", b =>
                 {
@@ -95,7 +74,7 @@ namespace ClassRegister.DataLayer.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("State")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<double>("TestThreshold")
@@ -144,15 +123,6 @@ namespace ClassRegister.DataLayer.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("ClassRegister.DataLayer.Models.Attendance", b =>
-                {
-                    b.HasOne("ClassRegister.DataLayer.Models.Student", "Student")
-                        .WithMany("Attendances")
-                        .HasForeignKey("StudentId");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("ClassRegister.DataLayer.Models.Course", b =>
                 {
                     b.HasOne("ClassRegister.DataLayer.Models.Coach", "Coach")
@@ -181,11 +151,6 @@ namespace ClassRegister.DataLayer.Migrations
             modelBuilder.Entity("ClassRegister.DataLayer.Models.Course", b =>
                 {
                     b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("ClassRegister.DataLayer.Models.Student", b =>
-                {
-                    b.Navigation("Attendances");
                 });
 #pragma warning restore 612, 618
         }

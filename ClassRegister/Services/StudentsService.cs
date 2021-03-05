@@ -13,6 +13,7 @@ namespace ClassRegister.BusinessLayer.Services
         bool CheckIfStudentExists(Student student);
         Student GetStudent(string email);
         List<Student> GetStudents(int courseId);
+        void Update(Student student);
     }
 
     public class StudentsService : IStudentsService
@@ -53,7 +54,15 @@ namespace ClassRegister.BusinessLayer.Services
         {
             using (var context = _classRegisterDbContextFactoryMethod())
             {
-                return context.Students.Include(s => s.Course).Where(s => s.Course.Id == courseId).ToList();
+                return context.Courses.Include(c => c.Students).FirstOrDefault(c => c.Id == courseId).Students.ToList();
+            }
+        }
+
+        public void Update(Student student)
+        {
+            using (var context = _classRegisterDbContextFactoryMethod())
+            {
+                context.Students.Update(student);
             }
         }
     }
