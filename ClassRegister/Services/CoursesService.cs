@@ -24,6 +24,8 @@ namespace ClassRegister.BusinessLayer.Services
         {
             using (var context = _classRegisterDbContextFactoryMethod())
             {
+                context.Students.AttachRange(course.Students);
+                context.Coaches.Attach(course.Coach);
                 context.Courses.Add(course);
                 context.SaveChanges();
             }

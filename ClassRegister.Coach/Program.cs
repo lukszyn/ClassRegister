@@ -25,8 +25,6 @@ namespace ClassRegister.CoachApp
             container.Resolve<Program>().Run();
         }
 
-
-
         private void Run()
         {
             bool exit = false;
@@ -81,8 +79,8 @@ namespace ClassRegister.CoachApp
             {
                 Console.WriteLine("Choose option:");
                 Console.WriteLine("Press 1 to ...");
-                Console.WriteLine("Press 2 to log out");
-                Console.WriteLine("Press 3 to add attendance");
+                Console.WriteLine("Press 2 to Log out");
+                Console.WriteLine("Press 3 to Add attendance");
                 Console.WriteLine("Press 0 to Exit");
 
                 int userChoice = _ioHelper.GetIntFromUser("Select option:");
