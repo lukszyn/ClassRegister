@@ -19,6 +19,7 @@ namespace ClassRegister.DataLayer
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Coach> Coaches { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Coach>()

@@ -46,7 +46,7 @@ namespace ClassRegister.BusinessLayer.Services
             using (var contex = _classRegisterDbContextFactoryMethod())
             {
                 return contex.Courses
-                    .Where(x => x.Coach.Id == coachId && x.Status == Status.Active)
+                    .Where(x => x.Coach.Id == coachId && x.State == State.Active)
                     .ToList();
             }
         }

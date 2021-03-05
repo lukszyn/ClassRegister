@@ -2,6 +2,7 @@
 using ClassRegister.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace ClassRegister.WebApi.Controllers
 {
@@ -9,10 +10,14 @@ namespace ClassRegister.WebApi.Controllers
     public class CoachController : ControllerBase
     {
         private ICoachService _coachService;
+        private ICoursesService _coursesService;
 
-        public CoachController(ICoachService coachService)
+        public CoachController(
+            ICoachService coachService,
+            ICoursesService coursesService)
         {
             _coachService = coachService;
+            _coursesService = coursesService;
         }
 
         [HttpPost]
@@ -28,6 +33,26 @@ namespace ClassRegister.WebApi.Controllers
                 return new BadRequestResult();
             }
 
+        }
+
+        [HttpGet("{coachId}/courses")]
+        public List<Course> GetCourses(int coachId)
+        {
+            return _coursesService.GetActiveCourses(coachId);
+        }
+
+        [HttpGet]
+        [Route("credentials")]
+        public Coach LoginCoach([FromQuery] Credentials credentials)
+        {
+            return _coachService.Login(credentials);
+        }
+
+        [HttpGet]
+        [Route("{email}")]
+        public Coach GetCoach([FromQuery] string email)
+        {
+            return _coachService.GetCoach(email);
         }
     }
 }

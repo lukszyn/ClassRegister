@@ -1,8 +1,10 @@
-﻿using ClassRegister.coach.Models;
+﻿using ClassRegister.CoachApp.Models;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
-namespace ClassRegister.coach
+namespace ClassRegister.CoachApp
 {
     public interface IIoHelper
     {
@@ -13,6 +15,7 @@ namespace ClassRegister.coach
         public DateTime GetDateTimeFromUser(string message);
         string GetEmailFromUser(string message);
         string GetPasswordFromUser(string message);
+        Status GetAttendanceStatus(string v);
         void PrintCourse(Course course);
     }
 
@@ -112,6 +115,25 @@ namespace ClassRegister.coach
             while (validation == false);
 
             return password;
+        }
+
+        public Status GetAttendanceStatus(string message)
+        {
+            var correctValues = "";
+
+            foreach (var status in (Status[])Enum.GetValues(typeof(Status)))
+            {
+                correctValues += $"{status},";
+            }
+
+            object result;
+
+            while (!Enum.TryParse(typeof(Status), GetStringFromUser($"{message} ({correctValues}):"), out result))
+            {
+                Console.WriteLine("Incorrect value, try again");
+            }
+
+            return (Status)result;
         }
 
         public void PrintCourse(Course course)

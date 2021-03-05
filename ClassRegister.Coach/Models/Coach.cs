@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ClassRegister.coach.Models
+namespace ClassRegister.CoachApp.Models
 {
     public class Coach
     {

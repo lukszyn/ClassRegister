@@ -1,6 +1,7 @@
 ﻿using ClassRegister.BusinessLayer.Services;
 using ClassRegister.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ClassRegister.WebApi.Controllers
 {
@@ -15,15 +16,15 @@ namespace ClassRegister.WebApi.Controllers
         }
 
         [HttpPost]
-        public string PostStudent([FromBody] Student student)
+        public StatusCodeResult PostStudent([FromBody] Student student)
         {
             if (!_studentsService.CheckIfStudentExists(student))
             {
                 _studentsService.Add(student);
-                return "Student added successfully";
+                return new StatusCodeResult(200);
             } else
             {
-                return "Something went wrong, try again.";
+                return new BadRequestResult();
             }
         }
 
@@ -32,6 +33,13 @@ namespace ClassRegister.WebApi.Controllers
         public Student GetStudent(string email)
         {
             return _studentsService.GetStudent(email);
+        }
+
+        [HttpGet]
+        [Route("all/{id}")]
+        public List<Student> GetStudents(int courseId)
+        {
+            return _studentsService.GetStudents(courseId);
         }
     }
 }

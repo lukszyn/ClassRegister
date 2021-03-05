@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClassRegister.DataLayer.Models
 {
-    public enum Status
+    public enum State
     {
         Active = 0,
         Completed = 1,
@@ -21,6 +21,6 @@ namespace ClassRegister.DataLayer.Models
         public double HomeworkThreshold { get; set; } = 0.7;
         public double TestThreshold { get; set; } = 0.7;
         public ICollection<Student> Students { get; set; }
-        public Status Status { get; set; }
+        public State State { get; set; }
     }
 }

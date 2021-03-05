@@ -20,16 +20,12 @@ namespace ClassRegister.WebApi.Controllers
             _coursesService.Add(course);
         }
 
-        [HttpGet("{coachId}")]
-        public void GetCourses(int coachId)
-        {
-            _coursesService.GetActiveCourses(coachId);
-        }
 
-        [HttpGet("{courseId}")]
-        public void GetCours(int courseId)
+
+        [HttpGet("{id}")]
+        public Course GetCours(int id)
         {
-            _coursesService.GetCoursById(courseId);
+            return _coursesService.GetCoursById(id);
         }
     }
 }

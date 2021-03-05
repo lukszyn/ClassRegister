@@ -1,6 +1,8 @@
 ﻿using ClassRegister.DataLayer;
 using ClassRegister.DataLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ClassRegister.BusinessLayer.Services
@@ -10,6 +12,7 @@ namespace ClassRegister.BusinessLayer.Services
         void Add(Student student);
         bool CheckIfStudentExists(Student student);
         Student GetStudent(string email);
+        List<Student> GetStudents(int courseId);
     }
 
     public class StudentsService : IStudentsService
@@ -43,6 +46,14 @@ namespace ClassRegister.BusinessLayer.Services
             using (var context = _classRegisterDbContextFactoryMethod())
             {
                 return context.Students.FirstOrDefault(s => s.Email == email);
+            }
+        }
+
+        public List<Student> GetStudents(int courseId)
+        {
+            using (var context = _classRegisterDbContextFactoryMethod())
+            {
+                return context.Students.Include(s => s.Course).Where(s => s.Course.Id == courseId).ToList();
             }
         }
     }

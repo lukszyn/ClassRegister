@@ -2,7 +2,7 @@
 using Unity;
 using Unity.Injection;
 
-namespace ClassRegister.coach
+namespace ClassRegister.CoachApp
 {
     public class DIContainerProvider
     {
