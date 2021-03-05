@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ClassRegister.coach.Models;
+using System;
 using System.Globalization;
-using System.Text;
 
-namespace ClassRegister.Coach
+namespace ClassRegister.coach
 {
     public interface IIoHelper
     {
@@ -14,6 +13,7 @@ namespace ClassRegister.Coach
         public DateTime GetDateTimeFromUser(string message);
         string GetEmailFromUser(string message);
         string GetPasswordFromUser(string message);
+        void PrintCourse(Course course);
     }
 
     public class IoHelper : IIoHelper
@@ -112,6 +112,11 @@ namespace ClassRegister.Coach
             while (validation == false);
 
             return password;
+        }
+
+        public void PrintCourse(Course course)
+        {
+            Console.WriteLine($"{course.Id}. {course.Name}");
         }
     }
 }

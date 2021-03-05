@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace ClassRegister.Admin.Models
 {
+    public enum Status
+    {
+        Active = 0,
+        Completed = 1,
+    }
+
     public class Course
     {
         public string Name { get; set; }
@@ -12,5 +18,6 @@ namespace ClassRegister.Admin.Models
         public double HomeworkThreshold { get; set; } = 0.7;
         public double TestThreshold { get; set; } = 0.7;
         public ICollection<Student> Students { get; set; }
+        public Status Status { get; set; }
     }
 }

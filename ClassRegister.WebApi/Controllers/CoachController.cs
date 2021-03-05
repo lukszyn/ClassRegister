@@ -1,6 +1,7 @@
 ﻿using ClassRegister.BusinessLayer.Services;
 using ClassRegister.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace ClassRegister.WebApi.Controllers
 {
@@ -15,9 +16,18 @@ namespace ClassRegister.WebApi.Controllers
         }
 
         [HttpPost]
-        public void PostCoach([FromBody] Coach coach)
+        public StatusCodeResult PostCoach([FromBody] Coach coach)
         {
-            _coachService.Add(coach);
+            try
+            {
+                _coachService.Add(coach);
+                return new StatusCodeResult(200);
+            }
+            catch (Exception)
+            {
+                return new BadRequestResult();
+            }
+
         }
     }
 }

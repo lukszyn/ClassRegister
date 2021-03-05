@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClassRegister.DataLayer.Models
 {
+    public enum Status
+    {
+        Active = 0,
+        Completed = 1,
+    }
+
     public class Course
     {
         public int Id { get; set; }
@@ -15,5 +21,6 @@ namespace ClassRegister.DataLayer.Models
         public double HomeworkThreshold { get; set; } = 0.7;
         public double TestThreshold { get; set; } = 0.7;
         public ICollection<Student> Students { get; set; }
+        public Status Status { get; set; }
     }
 }

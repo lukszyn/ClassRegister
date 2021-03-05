@@ -1,7 +1,11 @@
 ﻿using System;
 using Unity;
+using ClassRegister.coach.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace ClassRegister.Coach
+namespace ClassRegister.coach
 {
     class Program
     {
@@ -52,7 +56,57 @@ namespace ClassRegister.Coach
 
         private void LogIn()
         {
-            //var coach = new Coach
+
+
+            //PrintActiveCourse(coach);
+            
+        }
+
+        private void PrintActiveCourse(Coach coach)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.GetAsync($@"http://localhost:10500/api/courses/{coach.Id}").Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseObject = JsonConvert.DeserializeObject<List<Course>>(responseText);
+                    Console.WriteLine("Your active courses:");
+                    foreach (var course in responseObject)
+                    {
+                        _ioHelper.PrintCourse(course);
+                    }
+
+                    SelectActiveCourse();
+                }
+                else
+                {
+                    Console.WriteLine($"Failed. Status code: {response.StatusCode}");
+                }
+            }
+        }
+
+        private void SelectActiveCourse()
+        {
+            var courseId = _ioHelper.GetIntFromUser("Select course id:");
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.GetAsync($@"http://localhost:10500/api/courses/{courseId}").Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseObject = JsonConvert.DeserializeObject<Course>(responseText);
+                    CourseOptions(responseObject);
+                }
+            }
+        }
+
+        private void CourseOptions(Course responseObject)
+        {
+            Console.WriteLine("Tu będzie więcej opcji. pracujemy nad tym ;)");
         }
     }
 }
