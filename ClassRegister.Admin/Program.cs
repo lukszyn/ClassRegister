@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using Unity;
@@ -26,12 +27,16 @@ namespace ClassRegister.Admin
 
         private void Run()
         {
+            bool exit = false; 
+
             do
             {
                 Console.WriteLine("Choose option:");
                 Console.WriteLine("Press 1 to Add a coach");
                 Console.WriteLine("Press 2 to Add a student");
                 Console.WriteLine("Press 3 to Add a course");
+                Console.WriteLine("Press 4 to Exit");
+
 
                 int adminChoice = _ioHelper.GetIntFromUser("Select option:");
 
@@ -46,12 +51,15 @@ namespace ClassRegister.Admin
                     case 3:
                         AddCourse();
                         break;
+                    case 4:
+                        exit = true;
+                        break;
                     default:
                         Console.WriteLine("Unknown option");
                         break;
                 }
 
-            } while (true);
+            } while (!exit);
         }
 
         private void AddStudent()
@@ -87,7 +95,30 @@ namespace ClassRegister.Admin
                 Password = _ioHelper.GetPasswordFromUser("Enter password:")
             };
         }
+
         private void AddCoach()
+        {
+            var coach = ProvideCoach();
+
+            var content = new StringContent(JsonConvert.SerializeObject(coach), Encoding.UTF8, "application/json");
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.PostAsync(@"http://localhost:10500/api/coaches", content).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    Console.WriteLine($"Success. Response content: {responseText}");
+                }
+                else
+                {
+                    Console.WriteLine($"Failed. Status code: {response.StatusCode}");
+                }
+            }
+        }
+
+        private Coach ProvideCoach()
         {
             var newCoach = new Coach()
             {
@@ -97,6 +128,8 @@ namespace ClassRegister.Admin
                 BirthDate = _ioHelper.GetDateTimeFromUser("Enter coach's bday date:"),
                 Password = _ioHelper.GetPasswordFromUser("Enter password:")
             };
+
+            return newCoach;
         }
 
         private void AddCourse()
@@ -139,14 +172,27 @@ namespace ClassRegister.Admin
         {
             var students = new List<Student>();
 
-            while (students.Count < 5)
+            while (true)
             {
-                var studentEmail = _ioHelper.GetEmailFromUser("Enter student\'s email: ");
-                var student = GetStudent(studentEmail);
-
-                if (student != null)
+                if (students.Count < 20)
                 {
-                    students.Add(student);
+                    var studentEmail = _ioHelper.GetEmailFromUser("Enter student\'s email: ");
+                    var student = GetStudent(studentEmail);
+
+                    if (student != null)
+                    {
+                        students.Add(student);
+                    }
+
+                } 
+                if (students.Count > 5)
+                {
+                    var choice = _ioHelper.GetIntFromUser("Do you want to finish? 1 - yes, any other key - no\n");
+
+                    if (choice == 1)
+                    {
+                        break;
+                    }
                 }
 
                 if (students.Count >= 20)
