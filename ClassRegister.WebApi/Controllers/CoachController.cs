@@ -50,7 +50,7 @@ namespace ClassRegister.WebApi.Controllers
 
         [HttpGet]
         [Route("{email}")]
-        public Coach GetCoach([FromQuery] string email)
+        public Coach GetCoach(string email)
         {
             return _coachService.GetCoach(email);
         }

@@ -110,9 +110,20 @@ namespace ClassRegister.CoachApp
 
         private void AddAttendance()
         {
-            if (_activeCourse == null) return;
+            if (_activeCourse == null)
+            {
+                Console.WriteLine("First select the active course");
+                Console.WriteLine();
+                return;
+            }
 
             var studentsOnCourse = GetStudents(_activeCourse.Id);
+            if (studentsOnCourse.Count == 0)
+            {
+                Console.WriteLine("No students");
+                Console.WriteLine();
+                return;
+            }
 
             var date = _ioHelper.GetDateTimeFromUser("Provide the classes date: ");
 
@@ -178,6 +189,7 @@ namespace ClassRegister.CoachApp
         private void LogOut()
         {
             _loggedCoach = null;
+            _activeCourse = null;
             Run();
         }
 

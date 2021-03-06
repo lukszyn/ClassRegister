@@ -16,12 +16,12 @@ namespace ClassRegister.DataLayer.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
-        public int CoachId { get; set; }
+        [Required]
         public Coach Coach { get; set; }
-        public double AttendanceThreshold { get; set; } = 0.7;
-        public double HomeworkThreshold { get; set; } = 0.7;
-        public double TestThreshold { get; set; } = 0.7;
+        public int AttendanceThreshold { get; set; } = 70;
+        public int HomeworkThreshold { get; set; } = 70;
+        public int TestThreshold { get; set; } = 70;
         public ICollection<Student> Students { get; set; }
-        public State State { get; set; }
+        public State State { get; set; } = State.Active;
     }
 }

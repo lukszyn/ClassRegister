@@ -8,7 +8,7 @@ namespace ClassRegister.Admin
     public interface IIoHelper
     {
         int GetIntFromUser(string message);
-        int GetPercentsFromUser(string message);
+        int GetPercentsFromUser(string message, int defaultValue = 0);
         string GetStringFromUser(string message);
         bool ValidatePercentage(int percentage);        
         public DateTime GetDateTimeFromUser(string message);
@@ -22,8 +22,10 @@ namespace ClassRegister.Admin
         {
             int result;
 
+
             while (!int.TryParse(GetStringFromUser(message), out result))
             {
+
                 Console.WriteLine("Not an integer - try again...");
             }
 
@@ -36,21 +38,33 @@ namespace ClassRegister.Admin
             return Console.ReadLine();
         }
 
-        public int GetPercentsFromUser(string message)
+        public int GetPercentsFromUser(string message, int defaultValue=0)
         {
             int percent;
 
             do
-            {
-                percent = GetIntFromUser(message);
-            } while (!ValidatePercentage(percent));
+            { 
+                var value = GetStringFromUser(message);
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    return defaultValue;
+                }
+                else
+                {
+                    while (!int.TryParse(value, out percent))
+                    {
+                        Console.WriteLine("Not an integer - try again...");
+                    }
+                }
+            } 
+            while (!ValidatePercentage(percent));
 
             return percent;
         }
 
         public bool ValidatePercentage(int percentage)
         {
-            return (percentage > 0 && percentage < 100) ? true : false;
+            return (percentage >= 0 && percentage <= 100) ? true : false;
         }
 
         public DateTime GetDateTimeFromUser(string message)
