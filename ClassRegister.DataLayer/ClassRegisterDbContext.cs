@@ -10,6 +10,7 @@ namespace ClassRegister.DataLayer
         DbSet<Course> Courses { get; set; }
         DbSet<Student> Students { get; set; }
         DbSet<Coach> Coaches { get; set; }
+        DbSet<Attendance> Attendances { get; set; }
         DatabaseFacade Database { get; }
         int SaveChanges();
     }

@@ -45,7 +45,7 @@ namespace ClassRegister.WebApi.Controllers
         [Route("all/{courseId}")]
         public List<Student> GetStudents(int courseId)
         {
-            return _studentsService.GetStudents(courseId);
+            return _studentsService.GetStudentsFromCourse(courseId);
         }
     }
 }

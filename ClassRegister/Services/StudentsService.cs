@@ -14,6 +14,7 @@ namespace ClassRegister.BusinessLayer.Services
         Student GetStudent(string email);
         List<Student> GetStudents(int courseId);
         void Update(Student student);
+        public List<Student> GetStudentsFromCourse(int courseId);
     }
 
     public class StudentsService : IStudentsService
@@ -54,7 +55,20 @@ namespace ClassRegister.BusinessLayer.Services
         {
             using (var context = _classRegisterDbContextFactoryMethod())
             {
-                return context.Courses.Include(c => c.Students).FirstOrDefault(c => c.Id == courseId).Students.ToList();
+                return context.Courses
+                    .Include(c => c.Students)
+                    .FirstOrDefault(c => c.Id == courseId)
+                    .Students.ToList();
+            }
+        }
+
+        public List<Student> GetStudentsFromCourse(int courseId)
+        {
+            using (var context = _classRegisterDbContextFactoryMethod())
+            {
+                return context.Students
+                    .Where(c => c.Course.Id==courseId)
+                    .ToList();
             }
         }
 

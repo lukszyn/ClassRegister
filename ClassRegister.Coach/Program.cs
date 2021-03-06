@@ -136,23 +136,24 @@ namespace ClassRegister.CoachApp
                     student.Attendances = new List<Attendance>();
                 }
 
-                student.Attendances.Add(new Attendance()
+                var attendenceStudent = new Attendance
                 {
+                    Student = student,
                     ClassesDate = date,
                     Status = _ioHelper.GetAttendanceStatus("Enter attendance: 1 - present, 2 - absent, 3 - justified absence")
-                });
+                };
 
-                UpdateStudentAttendance(student);
+                AddStudentAttendance(attendenceStudent);
             }
         }
 
-        private void UpdateStudentAttendance(Student student)
+        private void AddStudentAttendance(Attendance attendance)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(student), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(attendance), Encoding.UTF8, "application/json");
 
             using (var httpClient = new HttpClient())
             {
-                var response = httpClient.PutAsync(@"http://localhost:10500/api/students", content).Result;
+                var response = httpClient.PostAsync(@"http://localhost:10500/api/attendance", content).Result;
                 var responseText = response.Content.ReadAsStringAsync().Result;
 
                 if (response.IsSuccessStatusCode)
