@@ -111,7 +111,12 @@ namespace ClassRegister.CoachApp
 
         private void AddAttendance()
         {
-            if (_activeCourse == null) return;
+            if (_activeCourse == null)
+            {
+                Console.WriteLine("First select the active course");
+                Console.WriteLine();
+                return;
+            }
 
             var studentsOnCourse = GetStudents(_activeCourse.Id);
 
@@ -150,6 +155,7 @@ namespace ClassRegister.CoachApp
         private void LogOut()
         {
             _loggedCoach = null;
+            _activeCourse = null;
             Run();
         }
 

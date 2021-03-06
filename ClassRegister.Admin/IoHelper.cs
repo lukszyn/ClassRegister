@@ -22,8 +22,10 @@ namespace ClassRegister.Admin
         {
             int result;
 
+
             while (!int.TryParse(GetStringFromUser(message), out result))
             {
+
                 Console.WriteLine("Not an integer - try again...");
             }
 
@@ -41,9 +43,21 @@ namespace ClassRegister.Admin
             int percent;
 
             do
-            {
-                percent = GetIntFromUser(message);
-            } while (!ValidatePercentage(percent));
+            { 
+                var value = GetStringFromUser(message);
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    return percent = default;
+                }
+                else
+                {
+                    while (!int.TryParse(value, out percent))
+                    {
+                        Console.WriteLine("Not an integer - try again...");
+                    }
+                }
+            } 
+            while (!ValidatePercentage(percent));
 
             return percent;
         }
