@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
@@ -23,7 +24,10 @@ namespace ClassRegister.WebApi
                 .UseUnityServiceProvider(container)
                 .ConfigureServices(services =>
                 {
-                    services.AddMvc();
+                    services.AddMvc().AddJsonOptions(x => new JsonSerializerSettings()
+                    {
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    });
                     services.AddSwaggerGen(SwaggerDocsConfig);
                 })
                 .Configure(app =>

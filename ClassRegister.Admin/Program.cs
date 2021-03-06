@@ -172,14 +172,27 @@ namespace ClassRegister.Admin
         {
             var students = new List<Student>();
 
-            while (students.Count < 5)
+            while (true)
             {
-                var studentEmail = _ioHelper.GetEmailFromUser("Enter student\'s email: ");
-                var student = GetStudent(studentEmail);
-
-                if (student != null)
+                if (students.Count < 20)
                 {
-                    students.Add(student);
+                    var studentEmail = _ioHelper.GetEmailFromUser("Enter student\'s email: ");
+                    var student = GetStudent(studentEmail);
+
+                    if (student != null)
+                    {
+                        students.Add(student);
+                    }
+
+                } 
+                if (students.Count > 5)
+                {
+                    var choice = _ioHelper.GetIntFromUser("Do you want to finish? 1 - yes, any other key - no\n");
+
+                    if (choice == 1)
+                    {
+                        break;
+                    }
                 }
 
                 if (students.Count >= 20)

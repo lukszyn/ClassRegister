@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using Unity;
 
 namespace ClassRegister.CoachApp
@@ -24,8 +25,6 @@ namespace ClassRegister.CoachApp
 
             container.Resolve<Program>().Run();
         }
-
-
 
         private void Run()
         {
@@ -80,9 +79,9 @@ namespace ClassRegister.CoachApp
             do
             {
                 Console.WriteLine("Choose option:");
-                Console.WriteLine("Press 1 to select active course");
-                Console.WriteLine("Press 2 to log out");
-                Console.WriteLine("Press 3 to add attendance");
+                Console.WriteLine("Press 1 to Select active course");
+                Console.WriteLine("Press 2 to Log out");
+                Console.WriteLine("Press 3 to Add attendance");
                 Console.WriteLine("Press 0 to Exit");
 
                 int userChoice = _ioHelper.GetIntFromUser("Select option:");
@@ -124,11 +123,40 @@ namespace ClassRegister.CoachApp
 
             foreach (var student in studentsOnCourse)
             {
+                Console.WriteLine($"{student.Name} { student.Surname}");
+
+                if (student.Attendances == null)
+                {
+                    student.Attendances = new List<Attendance>();
+                }
+
                 student.Attendances.Add(new Attendance()
                 {
                     ClassesDate = date,
                     Status = _ioHelper.GetAttendanceStatus("Enter attendance: 1 - present, 2 - absent, 3 - justified absence")
                 });
+
+                UpdateStudentAttendance(student);
+            }
+        }
+
+        private void UpdateStudentAttendance(Student student)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(student), Encoding.UTF8, "application/json");
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.PutAsync(@"http://localhost:10500/api/students", content).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Success. Response content: {responseText}");
+                }
+                else
+                {
+                    Console.WriteLine($"Failed. Status code: {response.StatusCode}");
+                }
             }
         }
 
@@ -136,7 +164,7 @@ namespace ClassRegister.CoachApp
         {
             using (var httpClient = new HttpClient())
             {
-                var response = httpClient.GetAsync(@$"http://localhost:10500/api/students/{id}").Result;
+                var response = httpClient.GetAsync(@$"http://localhost:10500/api/students/all/{id}").Result;
                 var responseText = response.Content.ReadAsStringAsync().Result;
 
                 if (response.IsSuccessStatusCode)
