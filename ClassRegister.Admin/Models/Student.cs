@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClassRegister.Admin.Models
 {
@@ -10,5 +11,7 @@ namespace ClassRegister.Admin.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public Course Course { get; set; }
+        public ICollection<Attendance> Attendances { get; set; }
     }
 }

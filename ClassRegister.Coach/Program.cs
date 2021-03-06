@@ -118,6 +118,12 @@ namespace ClassRegister.CoachApp
             }
 
             var studentsOnCourse = GetStudents(_activeCourse.Id);
+            if (studentsOnCourse.Count == 0)
+            {
+                Console.WriteLine("No students");
+                Console.WriteLine();
+                return;
+            }
 
             var date = _ioHelper.GetDateTimeFromUser("Provide the classes date: ");
 

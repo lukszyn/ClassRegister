@@ -160,9 +160,9 @@ namespace ClassRegister.Admin
             {
                 Name = _ioHelper.GetStringFromUser("Enter the name of the course: "),
                 StartDate = _ioHelper.GetDateTimeFromUser("Enter the starting date: "),
-                AttendanceThreshold = _ioHelper.GetPercentsFromUser("Enter the required attendance threshold (0-100%): "),
-                HomeworkThreshold = _ioHelper.GetPercentsFromUser("Enter the required homework threshold (0-100%): "),
-                TestThreshold = _ioHelper.GetPercentsFromUser("Enter the required tests threshold (0-100%): "),
+                AttendanceThreshold = _ioHelper.GetPercentsFromUser("Enter the required attendance threshold (0-100%): ",Course.AttendanceThresholdDefaultValue),
+                HomeworkThreshold = _ioHelper.GetPercentsFromUser("Enter the required homework threshold (0-100%): ",Course.HomeworkThresholdDefaultValue),
+                TestThreshold = _ioHelper.GetPercentsFromUser("Enter the required tests threshold (0-100%): ",Course.TestThresholdDefaultValue),
                 Coach = GetCoach(_ioHelper.GetStringFromUser("Enter the coach email: ")),
                 Students = GetStudents()
             };
@@ -174,6 +174,16 @@ namespace ClassRegister.Admin
 
             while (true)
             {
+                if (students.Count >= 5)
+                {
+                    var choice = _ioHelper.GetStringFromUser("Do you want to finish? 1 - yes, any other key - no\n");
+
+                    if (choice == "1")
+                    {
+                        break;
+                    }
+                }
+
                 if (students.Count < 20)
                 {
                     var studentEmail = _ioHelper.GetEmailFromUser("Enter student\'s email: ");
@@ -185,18 +195,10 @@ namespace ClassRegister.Admin
                     }
 
                 } 
-                if (students.Count > 5)
-                {
-                    var choice = _ioHelper.GetIntFromUser("Do you want to finish? 1 - yes, any other key - no\n");
-
-                    if (choice == 1)
-                    {
-                        break;
-                    }
-                }
 
                 if (students.Count >= 20)
                 {
+                    Console.WriteLine("The group is full.");
                     break;
                 }
             }
